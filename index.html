@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>a11y-manual-testing: An accessibility resource for manual testing, debugging, and defect remediation.</title>
+    <meta name="keyfowrds" content="a11y, accessibility, accessibility resources, accessibility testing" />
+    <meta name="description" content="a11y-manual-testing: An accessibility resource for manual testing, debugging, and defect remediation." />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <meta name="robots" content="index, follow, archive">
+    <link href="https://fonts.googleapis.com/css?family=Source+Serif+Pro:400,700&display=swap" rel="stylesheet">
+    <link href="/favicon.ico" rel="icon">
+    <link href="/favicon.ico" rel="shortcut icon">
+    <style>
+      ::-moz-selection { color: #000; background-color: #ffeb3b; }
+      ::selection { color: #000; background-color: #ffeb3b; }
+      :focus { outline: rgba(255, 0, 0, 0.84) solid 5px; }
+      ::-webkit-input-placeholder {
+        text-align: center;
+        line-height: 1;
+      }
+      :-moz-placeholder { /* Firefox 18- */
+        line-height: 1;
+        text-align: center;
+      }
+      ::-moz-placeholder {  /* Firefox 19+ */
+        line-height: 1;
+        text-align: center;
+      }
+      :-ms-input-placeholder {  
+        line-height: 1;
+        text-align: center;
+      }
+      html {
+        background-color: #aeb0b1;
+        font-family: 'Source Serif Pro', sans-serif;
+        min-height: 100vh;
+        -ms-text-size-adjust: 100%; /* normalize.css */
+        -webkit-text-size-adjust: 100%; /* normalize.css */
+        line-height: 1.5;
+      }
+
+      body {
+        display: flex;
+        flex-direction: column;
+        font-size: 1.2rem;
+        margin: 0; /* normalize.css */
+        min-height: 100vh;
+      }
+
+      header:first-of-type {
+        background-color: #000;
+        color: #fff;
+        display: block;
+        flex: 0 1 auto;
+        padding: 3.2rem;
+      }
+
+      footer {
+        background-color: #000;
+        color: #fff;
+        display: block;
+        flex: 1 0 auto;
+        padding: 1rem;
+      }
+
+      /* pages */
+      main {
+        min-height: 80vh;
+        margin: 0 auto;
+      }
+
+      article {
+        background-color: #fafafb;
+        margin: 0;
+        max-width: 54rem;
+        padding: 0;
+      }
+
+      section {
+        padding: 1.6rem;
+      }
+
+      section > section {
+        padding: 0;
+      }
+
+      section + section {
+        padding-top: 3.2rem;
+      }
+
+      /* layout */
+      .card {
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 0.5rem 0 0 0;
+        padding: 1.8rem 1.8rem 2.4rem;
+      }
+
+      .card-success {
+        border-left: 1rem solid #65d0a7;
+      }
+
+      .card-info {
+        border-left: 1rem solid #0272b6;
+      }
+
+      .card-warning {
+        border-left: 1rem solid #ffa700;
+      }
+
+      .card-danger {
+        border-left: 1rem solid #c90318;
+      }
+
+      aside {
+        margin: 1.6rem 0rem;
+      }
+
+      aside p {
+        margin: 0;
+      }
+
+      blockquote {
+        margin: 1.6rem 1.6rem 3.2rem 1.6rem;
+      }
+
+
+      .anchor {
+        fill: none;
+      }
+
+      .anchor:hover, .anchor:focus {
+        fill: #000;
+      }
+
+      code {
+        font-size: 2rem;
+        border: 1px solid #e4e5e6;
+        border-radius: 4px;
+        padding: 2px 4px;
+      }
+
+      kbd {
+        background-color: #eee;
+        border-radius: 3px;
+        border: 1px solid #b4b4b4;
+        box-shadow: 0 1px 1px rgba(0, 0, 0, .2), 0 2px 0 0 rgba(255, 255, 255, .7) inset;
+        color: #333;
+        display: inline-block;
+        font-size: 1.8rem;
+        font-weight: 700;
+        line-height: 1;
+        padding: 2px 4px;
+        white-space: nowrap;
+      }
+
+      table {
+        width: 100%;
+        overflow: auto;
+        border-collapse: collapse;
+      }
+
+      table th {
+        font-weight: 600;
+        text-align: left;
+      }
+
+      tbody {
+        width: 100%;
+      }
+
+      table th,table td {
+        padding: 6px 13px;
+        border: 1px solid #dfe2e5;
+      }
+
+      table tr {
+        background-color: #fff;
+        border-top: 1px solid #c6cbd1;
+      }
+
+      table tr:nth-child(2n) {
+        background-color: #f6f8fa;
+      }
+
+      table td:nth-child(1) {
+        width: 33%;
+      }
+
+      table img {
+        background-color: transparent;
+      }
+
+      /* typography */
+      a {
+        color: #0272b6;
+        outline: none;
+        text-decoration: none;
+      }
+
+      a:hover,
+      a:focus {
+        color: #0272b6;
+        text-decoration: underline;
+      }
+
+      a:active {
+        color: #0272b6;
+      }
+
+      a:focus {
+        text-decoration: underline;
+      }
+
+      h1 {
+        margin: 0;
+      }
+
+      h2 {
+          color: #191919;
+          font-size: 2rem;
+          font-weight: 300;
+          letter-spacing: 1px;
+          line-height: 1.5;
+          margin: 0 0 1.2rem ;
+          text-transform: none;
+      }
+
+      @media only screen and (min-width: 102.4rem) {
+          h2 {
+              font-size: 2.4rem;
+              line-height: 1.5
+          }
+      }
+
+      h3 {
+          color: #191919;
+          font-size: 1.8rem;
+          font-weight: 300;
+          letter-spacing: 1px;
+          line-height: 1.5;
+          margin: 0;
+          text-transform: none;
+      }
+
+      p {
+        margin-top: 0.4rem;
+      }
+
+      @media only screen and (min-width: 102.4rem) {
+          h3 {
+              font-size: 2rem;
+              line-height: 1.5
+          }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <article>
+        <header>
+          <h1>a11y-manual-testing Home</h1>
+          <p>An accessibility resource for manual testing, debugging, and defect remediation.</p>
+        </header>
+
+        <section>
+          <p>Visit the <a href="https://github.com/nelilly/a11y-manual-testing">a11y-manual-testing GitHub repo</a> for guidance on setting up a manual accessibility testing environment.</p>
+
+          <aside class="card card-warning">
+            <h2>&#9755; Automated testing</h2>
+            <p> Before attempting manual testing the features should be checked using automated tools and any errors corrected.</p>
+          </aside>
+        </section>
+
+        <section id="authoring-examples">
+            <h2>Authoring Examples<a class="anchor" aria-hidden="true" href="#authoring-examples"><svg alt="anchor" role="image" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path><text fill="none" stroke="none">anchor</text></svg></a></h2>
+          <p>Authoring examples of various patterns and widgets can be found on both the <a href="https://webaim.org/">WebAIM</a> site and on the <a href="https://www.w3.org/TR/wai-aria-practices-1.1/">WAI-ARIA Authoring Practices 1.1 page</a> in the <a href="https://www.w3.org/TR/wai-aria-practices-1.1/#aria_ex">Design Patterns and Widgets section</a> and the <a href="https://a11yproject.com/patterns">A11Y Project&rsquo;s Patterns page</a>. A few examples are listed below.</p>
+          <ul>
+            <li><a href="https://www.w3.org/TR/wai-aria-practices-1.1/examples/accordion/accordion.html">Accordion</a> on WAI-ARIA</li>
+            <li><a href="https://www.w3.org/TR/wai-aria-practices-1.1/examples/alert/alert.html">Alert</a> on WAI-ARIA</li>
+            <li><a href="https://www.w3.org/TR/wai-aria-practices-1.1/examples/button/button.html">Button</a> on WAI-ARIA</li>
+            <li><a href="https://www.w3.org/TR/wai-aria-practices-1.1/examples/carousel/carousel-1/carousel-1.html">Carousel</a> on WAI-ARIA</li>
+            <li><a href="https://www.w3.org/TR/wai-aria-practices-1.1/examples/dialog-modal/dialog.html">Dialog (Modal)</a> on WAI-ARIA</li>
+            <li><a href="https://webaim.org/techniques/forms/controls">Form Controls</a> on WebAIM</li>
+            <li><a href="https://webaim.org/techniques/formvalidation/">Form Validation</a> on WebAIM</li>
+            <li><a href="https://www.w3.org/TR/wai-aria-practices-1.1/examples/link/link.html">Link</a> on WAI-ARIA</li>
+            <li><a href="https://www.w3.org/TR/wai-aria-practices-1.1/examples/table/table.html">Table</a> on WAI-ARIA</li>
+          </ul>
+          <p></p>
+        </section>
+
+        <section id="basic-screen-reader-controls">
+          <h2>Basic Screen Reader Controls<a class="anchor" aria-hidden="true" href="#basic-screen-reader-controls"><svg alt="anchor" role="image" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path><text fill="none" stroke="none">anchor</text></svg></a></h2>
+          <aside class="card card-info">
+            <h3>&#9755; Introduction to Screen Readers</h3>
+            <p>Introductory videos for screen reader controls can be found at the <strong><a href="https://youtube.com/nelilly">Introduction to Screen Readers</a></strong> YouTube Channel.</p></aside>
+          <section id="all-screen-readers">
+            <table>
+              <caption><h3>Keystrokes for All Screen Readers<a class="anchor" aria-hidden="true" href="#all-screen-readers"><svg alt="anchor" role="image" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path><text fill="none" stroke="none">anchor</text></svg></a></h3></caption>
+                <tbody><tr>
+                  <th scope="col"><strong>Keystroke</strong></th>
+                  <th scope="col"><strong>Purpose</strong></th>
+                </tr>
+                <tr>
+                  <td><kbd>Tab</kbd></td>
+                  <td>Go to next focusable item (link, button, input, etc.)</td>
+                </tr>
+                <tr>
+                  <td><kbd>Shift</kbd> + <kbd>Tab</kbd></td>
+                  <td>Go to prior focusable item (link, button, input, etc.)</td>
+                </tr>
+                <tr>
+                  <td><kbd>Enter</kbd> </td>
+                  <td>Activate link</td>
+                </tr>
+                <tr>
+                  <td><kbd>Enter</kbd> or <kbd>Space</kbd></td>
+                  <td>Activate button</td>
+                </tr>
+                <tr>
+                  <td>Arrow keys:<br /> <kbd>&rarr;</kbd> <kbd>&larr;</kbd> <kbd>&uarr;</kbd> <kbd>&darr;</kbd></td>
+                  <td>Navigate within &lt;select&gt; lists, and some types of custom ARIA widgets, e.g. tablists, application menus, tree views, etc. (if they are coded correctly)</td>
+                </tr>
+              </tbody>
+            </table>
+          </section>
+
+          <section id="nvda-with-firefox">
+            <table>
+              <caption><h3>NVDA with Firefox<a class="anchor" aria-hidden="true" href="#nvda-with-firefox"><svg alt="anchor" role="image" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path><text fill="none" stroke="none">anchor</text></svg></a></h3></caption>
+                <tbody><tr>
+                  <th scope="col"><strong>Keystroke</strong></th>
+                  <th scope="col"><strong>Purpose</strong></th>
+                </tr>
+                <tr>
+                  <td><kbd>Control</kbd> + <kbd>Alt</kbd> + <kbd>N</kbd></td>
+                  <td>Turn NVDA on</td>
+                </tr>
+                <tr>
+                  <td><kbd>Control</kbd></td>
+                  <td>Stop talking</td>
+                </tr>
+                <tr>
+                  <td><kbd>&darr;</kbd> </td>
+                  <td>Read next item</td>
+                </tr>
+                <tr>
+                  <td><kbd>NVDA</kbd> + <kbd>&darr;</kbd></td>
+                  <td>Read continuously from this point on</td>
+                </tr>
+                <tr>
+                  <td><kbd>NVDA</kbd> + <kbd>F7</kbd></td>
+                  <td>Show list of links, headings, and landmarks</td>
+                </tr>
+                <tr>
+                  <td><kbd>H</kbd></td>
+                  <td>Go to next heading</td>
+                </tr>
+                <tr>
+                  <td><kbd>D</kbd></td>
+                  <td>Go to next landmark</td>
+                </tr>
+                <tr>
+                  <td><kbd>T</kbd></td>
+                  <td>Go to next table</td>
+                </tr>
+                <tr>
+                  <td><kbd>Control</kbd> + <kbd>Alt</kbd> + Arrow keys</td>
+                  <td>Navigate table cells</td>
+                </tr>
+                <tr>
+                  <td><kbd>NVDA</kbd> + <kbd>Space</kbd></td>
+                  <td>Toggle between focus mode (for forms and custom ARIA/JavaScript widgets) and browse mode (for reading/navigating normally)</td>
+                </tr>
+                <tr>
+                  <td><kbd>NVDA</kbd> + <kbd>Q</kbd></td>
+                  <td>Turn NVDA off</td>
+                </tr>
+              </tbody>
+            </table>
+            <aside class="card card-warning">
+              <p>&#9755; The <kbd>NVDA</kbd> key could be <kbd>Insert</kbd> or <kbd>CAPS LOCK</kbd> depending on your settings.</p>
+            </aside>
+          </section>
+          
+          <section id="jaws-with-ie">
+            <table>
+              <caption><h3>JAWS with IE<a class="anchor" aria-hidden="true" href="#jaws-with-ie"><svg alt="anchor" role="image" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path><text fill="none" stroke="none">anchor</text></svg></a></h3></caption>
+                <tbody><tr>
+                  <th scope="col"><strong>Keystroke</strong></th>
+                  <th scope="col"><strong>Purpose</strong></th>
+                </tr>
+                <tr>
+                  <td><kbd>Control</kbd></td>
+                  <td>Stop talking</td>
+                </tr>
+                <tr>
+                  <td><kbd>&darr;</kbd> </td>
+                  <td>Read next item</td>
+                </tr>
+                <tr>
+                  <td><kbd>Insert</kbd> + <kbd>&darr;</kbd></td>
+                  <td>Read continuously from this point on</td>
+                </tr>
+                <tr>
+                  <td><kbd>R</kbd></td>
+                  <td>Go to next landmark (region)</td>
+                </tr>
+                <tr>
+                  <td><kbd>Q</kbd></td>
+                  <td>Go to the main content landmark</td>
+                </tr>
+                <tr>
+                  <td><kbd>Insert</kbd> + <kbd>F6</kbd></td>
+                  <td>Show list of headings</td>
+                </tr>
+                <tr>
+                  <td><kbd>Insert</kbd> + <kbd>F3</kbd></td>
+                  <td>Show list of buttons, frames, graphics, lists, links, etc.</td>
+                </tr>
+                <tr>
+                  <td><kbd>H</kbd></td>
+                  <td>Go to next heading</td>
+                </tr>
+                <tr>
+                  <td><kbd>T</kbd></td>
+                  <td>Go to next table</td>
+                </tr>
+                <tr>
+                  <td><kbd>Control</kbd> + <kbd>Alt</kbd> + Arrow keys</td>
+                  <td>Navigate table cells</td>
+                </tr>
+              </tbody>
+            </table>
+          </section>
+          
+          <section id="narrator-with-edge">
+            <table>
+              <caption><h3>Narrator with Edge<a class="anchor" aria-hidden="true" href="#narrator-with-edge"><svg alt="anchor" role="image" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path><text fill="none" stroke="none">anchor</text></svg></a></h3></caption>
+                <tbody></tbody>
+            </table>
+            
+            <aside class="card">
+            <p><code>Coming soon.</code></p>
+            </aside>
+          </section>
+          
+          <section id="voiceover-with-macos">
+            <table>
+              <caption><h3>VoiceOver with MacOS<a class="anchor" aria-hidden="true" href="#voiceover-with-macos"><svg alt="anchor" role="image" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path><text fill="none" stroke="none">anchor</text></svg></a></h3></caption>
+                <tbody></tbody>
+            </table>
+            
+            <aside class="card">
+            <p><code>Coming soon.</code></p>
+            </aside>
+          </section>
+        </section>
+        
+        <section id="screen-reader-documentation">
+          <h2>Screen Reader Documentation<a class="anchor" aria-hidden="true" href="#screen-reader-documentation"><svg alt="anchor" role="image" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path><text fill="none" stroke="none">anchor</text></svg></a></h2>
+          <h3>Windows</h3>
+          <ul>
+          <li><a href="https://www.nvaccess.org/files/nvda/documentation/userGuide.html">NVDA</a> for use with Firefox (default browser)</li>
+          <li><a href="http://www.freedomscientific.com/products/blindness/jawsdocumentation">JAWS</a> for use with IE11</li>
+          <li><a href="https://support.microsoft.com/en-us/help/22798/windows-10-complete-guide-to-narrator">Narrator</a> for use with Edge</li>
+          <li><a href="http://www.gwmicro.com/Window-Eyes/">Window Eyes</a> for use with IE11 (no longer being actively developed)</li>
+          </ul>
+          <h3>MacOS</h3>
+          <ul>
+          <li><a href="https://help.apple.com/voiceover/mac/10.14/">VoiceOver</a> for use with Safari</li>
+          </ul>
+        </section>
+
+        <section id="">
+          <h2>Accessibility Extensions<a class="anchor" aria-hidden="true" href="#accessibility-extensions"><svg alt="anchor" role="image" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path><text fill="none" stroke="none">anchor</text></svg></a></h2>
+          <ul>
+            <li><a href="https://www.deque.com/axe/">Axe</a> extension (Chrome/Firefox)</li>
+            <li><a href="https://wave.webaim.org/">WAVE</a> extension (Chrome/Firefox)</li>
+            <li><a href="http://pauljadam.com/extension.html">a11yTools</a> extension (Safari)</li>
+          </ul>
+        </section>
+        
+        <section id="accessibility-resources">
+          <h2>Accessibility Resources<a class="anchor" aria-hidden="true" href="#accessibility-resources"><svg alt="anchor" role="image" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path><text fill="none" stroke="none">anchor</text></svg></a></h2>
+          
+          <h3><a href="https://webaim.org/">WebAIM</a><a id="webaim" class="anchor" aria-hidden="true" href="#webaim"><svg alt="anchor" role="image" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path><text fill="none" stroke="none">anchor</text></svg></a></h3>
+          <p>WebAIM provides software tools, instructional media, research, and manages the <code><a href="https://wave.webaim.org/">WAVE</a></code> accessibility extension.</p>
+          <ul>
+          <li><a href="https://webaim.org/intro/">Introduction to Accessibility</a></li>
+          <li><a href="https://webaim.org/articles/">General Articles</a></li>
+          <li><a href="https://webaim.org/articles/#html">HTML Accessibility</a></li>
+          <ul>
+            <li><a href="https://webaim.org/techniques/forms/">Forms</a></li>
+            <li><a href="https://webaim.org/techniques/forms/controls">Forms Controls</a></li>
+          </ul>
+          <li><a href="https://webaim.org/techniques/javascript/">JavaScript Accessibility</a></li>
+          <li><a href="https://webaim.org/resources/">WebAIM Resources, Tools, &amp; Simulators</a></li>
+          </ul>
+          
+          <h3><a href="https://www.deque.com/">Deque</a><a id="deque" class="anchor" aria-hidden="true" href="#deque"><svg alt="anchor" role="image" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path><text fill="none" stroke="none">anchor</text></svg></a></h3>
+          <p>Deque manages the <a href="https://www.deque.com/axe/"><code>axe</code></a> accessibility extension and <a href="https://github.com/dequelabs/axe-core"><code>axe-core</code></a> open-source accessibility testing engine, as well as providing learning resources through <a href="https://dequeuniversity.com">Deque University</a>.</p>
+
+          <h3><a href="https://www.deque.com/">A11Y Project</a><a id="a11y-project" class="anchor" aria-hidden="true" href="#a11y-project"><svg alt="anchor" role="image" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path><text fill="none" stroke="none">anchor</text></svg></a></h3>
+          <ul>
+            <li><a href="https://a11yproject.com/patterns">Patterns</a></li>
+            <li><a href="https://a11yproject.com/checklist">Checklist</a></li>
+            <li><a href="https://a11yproject.com/resources">Resources</a></li>
+          </ul>
+        </section>
+
+        <section id="top-screen-readers-by-usage">
+          <h2>Top Screen Readers by Usage<a class="anchor" aria-hidden="true" href="#top-screen-readers-by-usage"><svg alt="anchor" role="image" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path><text fill="none" stroke="none">anchor</text></svg></a></h2>
+
+          <table>
+            <caption>Most common screen reader and browser combinations (<em>as of Dec 21, 2017</em>)</caption>
+            <tbody>
+              <tr>
+              <th scope="col">Screen Reader &amp; Browser</th>
+              <th scope="col"># of Respondents</th>
+              <th scope="col">% of Respondents</th>
+              </tr>
+              <tr>
+              <th scope="row">JAWS with Internet Explorer</th>
+              <td>424</td>
+              <td>24.7%</td>
+              </tr>
+              <tr>
+              <th scope="row">NVDA with Firefox</th>
+              <td>405</td>
+              <td>23.6%</td>
+              </tr>
+              <tr>
+              <th scope="row">JAWS with Firefox</th>
+              <td>260</td>
+              <td>15.1%</td>
+              </tr>
+              <tr>
+              <th scope="row">VoiceOver with Safari</th>
+              <td>172</td>
+              <td>10.0%</td>
+              </tr>
+              <tr>
+              <th scope="row">JAWS with Chrome</th>
+              <td>112</td>
+              <td>6.5%</td>
+              </tr>
+              <tr>
+              <th scope="row">NVDA with Chrome</th>
+              <td>102</td>
+              <td>5.9%</td>
+              </tr>
+              <tr>
+              <th scope="row">NVDA with IE</th>
+              <td>40</td>
+              <td>2.3%</td>
+              </tr>
+              <tr>
+              <th scope="row">VoiceOver with Chrome</th>
+              <td>24</td>
+              <td>1.4%</td>
+              </tr>
+              <tr>
+              <th scope="row">Other combinations</th>
+              <td>180</td>
+              <td>10.5%</td>
+              </tr>
+            </tbody>
+          </table>
+          <p>Source: <a href="https://webaim.org/projects/screenreadersurvey7/">WebAIM Screen Reader User Survey</a></p>
+        </section>
+      </article>
+      <footer>&copy;2019 N.E.Lilly</footer>
+    </main>
+  </body>
+</html>
