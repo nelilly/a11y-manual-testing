@@ -23,6 +23,6 @@ MacOS already comes with VoiceOver:
 - [VoiceOver](https://help.apple.com/voiceover/mac/10.14/) for use with Safari
   - [a11yTools](http://pauljadam.com/extension.html) extension (Safari)
 
-Consider adding one or more of the following extensions for use in Chrome or Firefox.
+Consider adding one or more of the following extensions for use in Chrome or Firefox on Mac.
 - [Axe](https://www.deque.com/axe/) extension
 - [WAVE](https://wave.webaim.org/) extension
