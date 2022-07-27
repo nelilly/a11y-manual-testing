@@ -1,9 +1,17 @@
 # a11y-manual-testing
 An accessibility resource for manual testing, debugging, and defect remediation. 
 
-This README.md file contains a list of resources to set up a manual testing environment. The <a href="https://nelilly.github.io/a11y-manual-testing/">a11y-manual-testing page</a> is an HTML file that contains information and links that are useful while testing your sites and features.
+This README.md file contains a list of resources to set up a manual testing environment. The [a11y-manual-testing page](https://nelilly.github.io/a11y-manual-testing/) is an HTML file that contains information and links that are useful while testing your sites and features.
 
 > **Automated testing:** Before attempting manual testing the features should be checked using automated tools and any errors corrected.
+
+## Accessibility Testing Suite
+
+Use this resource in conjunction with the series of sites to provide best practices and examples in web accessibility.
+
+- [a11y-manual-testing](https://github.com/nelilly/a11y-manual-testing): an accessibility resource for manual testing, debugging, and defect remediation.
+- [a11y-workflow](https://github.com/nelilly/a11y-workflow): an accessibility resource for building manual and automated accessibility testing into a coding workflow.
+- [nelilly.github.io/inaccessible-website/](https://nelilly.github.io/inaccessible-website/): an example site providing common accessibility issues to help designers and developers understand how to test for and remediate potential accessibility issues.
 
 ## Windows test setup
 You should install the following applications for manual testing on Windows:
